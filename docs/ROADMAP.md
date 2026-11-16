@@ -1,20 +1,28 @@
 # Roadmap de Evolução — Madson Training
 
-## 1. Melhorias Planejadas
+## v1 (MVP) — concluída
+- Rotinas em accordions, controle de séries, progresso por rotina, cronômetro de 30s, temas, referências.
 
-### Fase 1: Recursos Offline e PWA
-- Implementação de Service Worker e Web App Manifest (`manifest.json`) para instalação como PWA (Progressive Web App) nativo na tela inicial do Android.
-- Suporte a cache offline de assets e fontes.
+## v2 (atual) — concluída
+- Novo programa de 5 sessões (Full Body A/B/C + Casa Qua/Sex) com faixa semanal e destaque do dia.
+- Cronômetro reformulado: anel circular, presets, 30s padrão por exercício, auto-start, sinal de início, alarme agendado e "assumir áudio".
+- Barra de progresso fixa no topo.
+- Reinício condicional (global oculto + por rotina).
+- Celebração de 100% com fogos.
+- PWA offline (Service Worker) e renomeação do atalho para "Treino".
+- Divisão do código em `index.html` + `assets/*` + `sw.js`.
 
-### Fase 2: Gestão de Dados
-- Funcionalidade de exportação de dados em formato JSON para backup.
-- Funcionalidade de importação de dados para restaurar progresso em outros aparelhos.
-- Histórico de treinos concluídos com carimbo de data/hora (logs de sessões).
+## Fase 3 — Dados e histórico
+- Registro opcional de carga (kg) por série e sugestão de progressão.
+- Histórico de sessões concluídas com data, duração e volume.
+- Exportação/importação de progresso em JSON (backup entre aparelhos).
+- Gráfico simples de evolução por exercício.
 
-### Fase 3: Customização de Treino
-- Interface para permitir edição, adição e remoção de exercícios e quantidades de séries.
-- Predefinição de tempos de descanso individuais por exercício (ex: 60s para compostos, 30s para isolados).
+## Fase 4 — Personalização
+- Edição de exercícios, séries e ordem direto na interface.
+- Duração de descanso individual por exercício já existe; evoluir para perfis por tipo (composto/isolado).
+- Checklist de retorno ao vôlei (força, saltos, aterrissagem, mudança de direção) com critérios objetivos.
 
-### Fase 4: Acessibilidade e Internacionalização
-- Ampliação de atalhos de acessibilidade e leitor de tela completo.
+## Fase 5 — Internacionalização e acessibilidade avançada
 - Suporte a múltiplos idiomas.
+- Revisão completa com leitor de tela.

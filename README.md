@@ -1,112 +1,130 @@
-# Madson Training
+# Treino do Aluno — Madson Training
 
-> Mobile-first workout tracker built with vanilla HTML, CSS and JavaScript.
+> Painel mobile de treino, séries e descanso. HTML, CSS e JavaScript puros — sem build, sem backend.
 
-Aplicação web estática, leve e intuitiva voltada para o acompanhamento prático de rotinas de treino (Academia e Casa), controle de séries por exercício, cronômetro de descanso integrado e persistência local no navegador.
+Aplicação web estática (PWA) voltada ao acompanhamento de rotinas de musculação e reabilitação de joelho: controle de séries por exercício, progresso por rotina, cronômetro de descanso inteligente e persistência local.
 
----
-
-## 🎯 Objetivo do MVP
-
-Oferecer uma interface limpa, rápida e 100% responsiva para uso durante os treinos pelo smartphone (especialmente testada para Brave Mobile no Android), dispensando cadastros, dependência de conexões de backend ou instalação de aplicativos pesados.
+**Versão atual: v2.0** — novo programa Full Body + cronômetro reformulado.
 
 ---
 
-## ✨ Funcionalidades
+## 🎯 Objetivo
 
-- **Interface Mobile-First:** Design otimizado para operação com apenas uma mão em telas de smartphones.
-- **Identidade Visual Premium:** Estilo escuro com detalhes em dourado inspirado na Academia Espaço Fitness DF.
-- **Alternância de Temas:** Suporte dinâmico a tema escuro (*dark*) e claro (*light*).
-- **Rotinas em Accordions:**
-  - **Academia:** Treino A (Quadríceps, Peito, Costas) e Treino B (Glúteos, Posteriores, Costas, Lombar).
-  - **Casa:** Rotina 1 (Resistência e Tronco) e Rotina 2 (Joelho e Elásticos).
-- **Controle Individual de Séries:** Botões interativos para marcar cada série realizada.
-- **Progresso Segmentado:** Percentual e barra de progresso calculados exclusivamente com base na rotina em execução.
-- **Persistência Local (`localStorage`):** O progresso é gravado automaticamente e mantido mesmo após fechar ou recarregar o navegador.
-  > ⚠️ **Atenção:** Os dados ficam armazenados localmente no navegador do dispositivo atual e não sincronizam automaticamente entre aparelhos ou navegadores distintos.
-- **Cronômetro de Descanso Configurável:**
-  - Padrão inicial de 30 segundos, editável para qualquer intervalo desejado.
-  - Funções de Iniciar, Pausar e Reiniciar.
-  - Alerta sonoro via Web Audio API e vibração em navegadores compatíveis.
-- **Consulta de Referências:** Modal integrado com buscas diretas por demonstrações em vídeo, imagens e GIFs de execução.
-- **Reinicialização Segura:** Botão para zerar treinos com diálogo de confirmação prévia para evitar perda acidental.
+Interface limpa, rápida e 100% responsiva para uso durante o treino pelo celular (testada em Brave/Chrome Mobile no Android), sem cadastro, sem servidor e sem instalação pesada.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## ✨ Funcionalidades (v2)
 
-- **HTML5:** Estrutura semântica e acessível.
-- **CSS3:** Variáveis customizadas (CSS tokens), flexbox, grid, animações fluidas e suporte a temas.
-- **JavaScript (ES6+):** Manipulação de DOM, gerenciamento de estado, temporizadores precisos e Web Audio API.
+### Programa
+- **5 sessões semanais** com dia fixo e faixa Seg→Dom no topo, com o dia atual destacado:
+  - **Ter · Full Body A** — glúteo máximo + quadríceps (22 séries)
+  - **Qua · Casa, Estabilidade** — glúteo médio + controle motor (13 séries)
+  - **Qui · Full Body B** — posteriores + glúteos (22 séries)
+  - **Sex · Casa, Condicionamento** — cardio leve + mobilidade (7 séries)
+  - **Sáb · Full Body C** — pernas completas + glúteo (21 séries)
+  - Seg e Dom: descanso
+- Exercícios marcados como **opcionais** (ex.: paralelas assistidas) não entram no cálculo de progresso.
+- Notas de segurança, progressão de carga, volume semanal e cuidados com os dois joelhos direto na tela.
+
+### Controle de treino
+- **Séries individuais** com marcação/desmarcação.
+- **Progresso por rotina** (nunca do plano inteiro), com barra sempre visível.
+- **Barra fixa no topo** ao rolar a página, com nome do treino, % e séries concluídas.
+- **Reiniciar condicional**: o botão global só aparece quando existe pelo menos uma série marcada. Cada rotina tem o próprio "Recomeçar esta rotina".
+- **Celebração aos 100%**: mensagem, estatísticas e fogos em `<canvas>` — uma vez por rotina, respeitando `prefers-reduced-motion`.
+- Persistência total em `localStorage` (progresso, rotina aberta, descanso por exercício e preferências).
+
+### Cronômetro
+- **Anel circular discreto** no rodapé — a barra horizontal fica reservada ao progresso do treino.
+- **Presets de um toque**: 30s · 1 min · 1m30 · 2 min · 3 min · Livre.
+- **30 segundos por padrão**, ajustável por exercício (o ajuste é memorizado).
+- **Auto-start** ao marcar uma série, com descanso **de transição** na última série de cada exercício — e **nunca** na última série do treino.
+- **Sinal de início**: anel pulsando, texto "Descanso iniciado" e bipe curto.
+- **Alarme de fim** em 3 rajadas (~3s) agendadas no `AudioContext`, com vibração longa. Por ser agendado no tempo exato, funciona mesmo com a tela bloqueada.
+- **Cronômetro livre** (contagem crescente) para tempos sem duração definida.
+
+### Técnico
+- Temas claro e escuro.
+- Modal de referências (vídeos, imagens, GIFs) sob demanda.
+- **PWA instalável** com Service Worker: network-first para o app, cache para offline.
+- Acessibilidade: ARIA, foco visível, navegação por teclado, respeito a movimento reduzido.
 
 ---
 
-## 📁 Estrutura do Repositório
+## 🛠️ Tecnologias
+
+- **HTML5** semântico
+- **CSS3** (variáveis, grid, flexbox, animações, temas)
+- **JavaScript ES6+** (módulo IIFE, sem dependências)
+- **Web Audio API**, **Vibration API**, **Canvas 2D**, **Service Worker**, **localStorage**
+
+---
+
+## 📁 Estrutura
 
 ```text
 madson-training/
-├── index.html              # Aplicação completa (HTML, CSS e JS embutidos)
-├── README.md               # Apresentação do projeto e manual de uso
-├── .gitignore              # Arquivos ignorados pelo controle de versão
+├── index.html              # Estrutura da aplicação
+├── sw.js                   # Service Worker (na raiz para escopo total)
+├── manifest.json           # Manifesto PWA
 ├── assets/
-│   └── logo.png            # Ativo de imagem da aplicação
-└── docs/
-    ├── ARQUITETURA.md      # Detalhamento técnico da arquitetura
-    ├── REQUISITOS.md       # Matriz de requisitos funcionais e não funcionais
-    ├── TESTES.md           # Registro de validações e testes executados
-    └── ROADMAP.md          # Próximas melhorias e evolução planejada
+│   ├── styles.css          # Estilos e temas
+│   ├── app.js              # Render, progresso, timer, celebração
+│   ├── data.js             # Programa de treino (WORKOUTS + SCHEDULE + notas)
+│   ├── logo.png            # Identidade visual (fonte)
+│   └── icons/              # Ícones 192, 512 e maskable
+├── docs/
+│   ├── ARQUITETURA.md
+│   ├── REQUISITOS.md
+│   ├── ROADMAP.md
+│   └── TESTES.md
+└── README.md
 ```
 
 ---
 
-## 🚀 Como Executar Localmente
+## 🚀 Uso
 
-Como se trata de uma aplicação puramente estática, basta abrir o arquivo `index.html` em qualquer navegador:
+### Online (uso normal)
+Abra no celular e, no menu do navegador, escolha **Adicionar à tela inicial** / **Instalar aplicativo**.
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/MadsonMagno/madson-training.git
-   ```
-2. Abra o diretório:
-   ```bash
-   cd madson-training
-   ```
-3. Abra o arquivo `index.html` no seu navegador de preferência ou utilize uma extensão como o *Live Server*.
+👉 **https://MadsonMagno.github.io/madson-training/**
 
----
+### Local
+Basta abrir `index.html` no navegador. Tudo funciona, **exceto** o cache offline — navegadores não registram Service Worker em `file://`.
 
-## 🌐 Acesso Público Online
+Para testar o Service Worker localmente, sirva a pasta com qualquer servidor estático:
 
-A aplicação está publicada e hospedada no **GitHub Pages**:
-
-👉 **[https://MadsonMagno.github.io/madson-training/](https://MadsonMagno.github.io/madson-training/)**
-
-Abra o link acima no navegador do celular (como Brave Mobile no Android) para utilizar o painel de treino na academia ou em casa.
+```bash
+python -m http.server 8080
+# abra http://localhost:8080
+```
 
 ---
 
-## 🔄 Como Atualizar o Site Futuramente
+## 🔄 Atualizar o site
 
-Para aplicar novas alterações ao site publicado:
+```bash
+git add .
+git commit -m "feat: descrição da mudança"
+git push origin main
+```
 
-1. Edite o código localmente.
-2. Faça commit e envie para a branch `main`:
-   ```bash
-   git add .
-   git commit -m "feat: descrição da melhoria realizada"
-   git push origin main
-   ```
-3. O GitHub Pages atualizará o site automaticamente em poucos instantes.
+O GitHub Pages publica em instantes. Depois de alterações grandes, incremente a constante `VERSION` em `sw.js` para descartar o cache antigo.
 
 ---
 
-## ⚠️ Limitações Conhecidas
+## ⚠️ Limitações conhecidas
 
-- **Áudio em Segundo Plano:** O sinal sonoro ao término do descanso pode ser pausado pelo sistema operacional caso o navegador entre em suspensão profunda ou a tela seja desligada (restrição padrão de economia de bateria de dispositivos móveis).
-- **Sem Sincronização em Nuvem:** Por operar via `localStorage`, o histórico de séries não é compartilhado entre computadores e celulares.
+- **Ducking de áudio:** não é possível baixar o volume de Spotify/YouTube a partir de uma página web (não existe API para isso; apps nativos usam *audio focus* do sistema). O alarme toca **por cima** da música. A opção *"Tentar assumir o áudio"* usa um elemento `<audio>` real, que em alguns aparelhos faz o sistema abaixar ou pausar a mídia — comportamento do Android/Chrome, não controlável.
+- **Tela bloqueada:** o alarme é pré-agendado no `AudioContext` para tocar no instante exato. Ainda assim, economizadores de bateria agressivos podem suspender o áudio da aba.
+- **Sem sincronização:** os dados ficam no navegador do aparelho. Limpar os dados do site apaga o progresso.
+- **Nome do atalho:** o Android só atualiza o nome de um PWA já instalado após desinstalar e instalar novamente.
+- **Orientação médica:** o app é um guia de registro. A progressão de carga e a liberação para impacto seguem o profissional responsável.
 
 ---
 
 ## 📄 Licença
 
-A licença deste projeto ainda não foi definida formalmente pelo autor.
+Ainda não definida formalmente pelo autor.
