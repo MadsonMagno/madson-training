@@ -6,9 +6,9 @@ Aplicação web client-side autônoma (SPA estática) em HTML5, CSS3 e JavaScrip
 ## 2. Estrutura de arquivos
 | Arquivo | Responsabilidade |
 |---|---|
-| `index.html` | Estrutura: header, faixa semanal, resumo, rotinas, rodapé com cronômetro, diálogos e overlay de celebração |
+| `index.html` | Estrutura: header, resumo, rotinas, rodapé com cronômetro, diálogos e overlay de celebração |
 | `assets/styles.css` | Tokens de tema, layout mobile-first, anel do timer, barra fixa, celebração |
-| `assets/data.js` | Dados puros: `WORKOUTS`, `SCHEDULE`, `SAFETY`, `DEFAULT_REST` (expostos em `window`) |
+| `assets/data.js` | Dados puros: `WORKOUTS`, `SAFETY`, `DEFAULT_REST` (expostos em `window`) |
 | `assets/app.js` | Render, estado, progresso, motor do cronômetro, áudio, celebração, registro do SW |
 | `sw.js` | Service Worker (na raiz, para escopo total) |
 | `manifest.json` | Metadados de instalação |
@@ -19,13 +19,12 @@ Scripts clássicos (não `type="module"`), para que o app também funcione abert
 ## 3. Modelo de dados (`assets/data.js`)
 ```js
 WORKOUTS[] = {
-  id, group: "gym" | "home", symbol, day, dayLabel,
+  id, group: "gym" | "home", symbol,
   title, subtitle, focus[],
   items[] = { name, prescription, desc, query, sets, rest?, optional? }
 }
-SCHEDULE[] = { day, label, routine | null, hint }
 ```
-O `id` de cada exercício é derivado de `${workout.id}-${índice}`. O descanso padrão é 30s (`DEFAULT_REST`).
+O `id` de cada exercício é derivado de `${workout.id}-${índice}`. O descanso padrão é 30s (`DEFAULT_REST`). Não há grade de dias: o usuário escolhe o ambiente (academia/casa) e depois o treino.
 
 ## 4. Persistência
 Chave única `madson.training.state.v4`:
@@ -46,8 +45,8 @@ A chave legada `madson.training.progress.v3` **não é migrada**: os IDs do prog
 
 ## 5. Componentes
 
-### 5.1 Render (`renderWorkouts`, `renderWeek`)
-Gera rotinas, accordions, botões de série, badges "Hoje" e a faixa Seg→Dom. Uma rotina aberta por vez (`state.open`), persistida entre recarregamentos.
+### 5.1 Render (`renderWorkouts`)
+Gera ambientes (academia/casa), rotinas, accordions e botões de série. Uma rotina aberta por vez (`state.open`), persistida entre recarregamentos.
 
 ### 5.2 Progresso (`updateProgress`)
 - Denominador = soma de `sets` dos exercícios **não opcionais**.

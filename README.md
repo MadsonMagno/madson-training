@@ -17,13 +17,10 @@ Interface limpa, rápida e 100% responsiva para uso durante o treino pelo celula
 ## ✨ Funcionalidades (v2)
 
 ### Programa
-- **5 sessões semanais** com dia fixo e faixa Seg→Dom no topo, com o dia atual destacado:
-  - **Ter · Full Body A** — glúteo máximo + quadríceps (22 séries)
-  - **Qua · Casa, Estabilidade** — glúteo médio + controle motor (13 séries)
-  - **Qui · Full Body B** — posteriores + glúteos (22 séries)
-  - **Sex · Casa, Condicionamento** — cardio leve + mobilidade (7 séries)
-  - **Sáb · Full Body C** — pernas completas + glúteo (21 séries)
-  - Seg e Dom: descanso
+- **Fluxo em dois níveis, sem dias fixos**: você escolhe **Academia** ou **Casa** e, dentro do ambiente, o treino que vai fazer.
+  - **Academia:** Full Body A (glúteo máximo + quadríceps, 22 séries) · Full Body B (posteriores + glúteos, 22) · Full Body C (pernas completas + glúteo, 19)
+  - **Casa:** Estabilidade (glúteo médio + controle motor, 13) · Condicionamento (cardio leve + mobilidade, 7)
+- Treine na ordem e na frequência que a semana permitir — o app não trava a rotina por dia da semana.
 - Exercícios marcados como **opcionais** (ex.: paralelas assistidas) não entram no cálculo de progresso.
 - Notas de segurança, progressão de carga, volume semanal e cuidados com os dois joelhos direto na tela.
 
@@ -50,6 +47,8 @@ Interface limpa, rápida e 100% responsiva para uso durante o treino pelo celula
 - **PWA instalável** com Service Worker: network-first para o app, cache para offline.
 - Acessibilidade: ARIA, foco visível, navegação por teclado, respeito a movimento reduzido.
 
+**v2.1:** removida a grade fixa de dias da semana — o treino é escolhido livremente a cada sessão.
+
 ---
 
 ## 🛠️ Tecnologias
@@ -71,7 +70,7 @@ madson-training/
 ├── assets/
 │   ├── styles.css          # Estilos e temas
 │   ├── app.js              # Render, progresso, timer, celebração
-│   ├── data.js             # Programa de treino (WORKOUTS + SCHEDULE + notas)
+│   ├── data.js             # Programa de treino (WORKOUTS + notas)
 │   ├── logo.png            # Identidade visual (fonte)
 │   └── icons/              # Ícones 192, 512 e maskable
 ├── docs/

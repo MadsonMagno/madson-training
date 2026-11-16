@@ -20,8 +20,6 @@
       id: "gym-a",
       group: "gym",
       symbol: "A",
-      day: "ter",
-      dayLabel: "Terça",
       title: "Full Body A",
       subtitle: "Glúteo máximo + quadríceps",
       focus: ["glúteo", "quadríceps"],
@@ -82,8 +80,6 @@
       id: "gym-b",
       group: "gym",
       symbol: "B",
-      day: "qui",
-      dayLabel: "Quinta",
       title: "Full Body B",
       subtitle: "Posteriores + glúteos",
       focus: ["posteriores", "glúteo"],
@@ -151,8 +147,6 @@
       id: "gym-c",
       group: "gym",
       symbol: "C",
-      day: "sab",
-      dayLabel: "Sábado",
       title: "Full Body C",
       subtitle: "Pernas completas + glúteo",
       focus: ["pernas", "glúteo"],
@@ -221,8 +215,6 @@
       id: "home-qua",
       group: "home",
       symbol: "Q",
-      day: "qua",
-      dayLabel: "Quarta",
       title: "Casa · Estabilidade",
       subtitle: "Glúteo médio + controle motor",
       focus: ["estabilidade", "glúteo médio"],
@@ -276,8 +268,6 @@
       id: "home-sex",
       group: "home",
       symbol: "S",
-      day: "sex",
-      dayLabel: "Sexta",
       title: "Casa · Condicionamento",
       subtitle: "Cardio leve + mobilidade",
       focus: ["condicionamento", "mobilidade"],
@@ -321,17 +311,6 @@
     },
   ];
 
-  /* Seg → Dom. routine = null significa descanso. */
-  const SCHEDULE = [
-    { day: "seg", label: "Seg", routine: null, hint: "Descanso" },
-    { day: "ter", label: "Ter", routine: "gym-a", hint: "Academia" },
-    { day: "qua", label: "Qua", routine: "home-qua", hint: "Casa" },
-    { day: "qui", label: "Qui", routine: "gym-b", hint: "Academia" },
-    { day: "sex", label: "Sex", routine: "home-sex", hint: "Casa" },
-    { day: "sab", label: "Sáb", routine: "gym-c", hint: "Academia" },
-    { day: "dom", label: "Dom", routine: null, hint: "Descanso" },
-  ];
-
   const SAFETY = {
     volume: [
       "Glúteo máximo: 15–18 séries equivalentes",
@@ -360,6 +339,5 @@
 
   window.DEFAULT_REST = DEFAULT_REST;
   window.WORKOUTS = WORKOUTS;
-  window.SCHEDULE = SCHEDULE;
   window.SAFETY = SAFETY;
 })();

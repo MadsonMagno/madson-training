@@ -6,28 +6,27 @@
 <meta name="theme-color" content="#101010">
 <meta name="description" content="Painel mobile de treinamento: rotinas, séries, progresso e descanso.">
 <title>Treino | Área do Aluno</title>
-<link rel="icon" type="image/png" href="./assets/logo.png?v=3">
-<link rel="apple-touch-icon" href="./assets/icons/icon-192.png?v=3">
+<link rel="icon" type="image/png" href="./assets/logo.png?v=4">
+<link rel="apple-touch-icon" href="./assets/icons/icon-192.png?v=4">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Treino">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="stylesheet" href="./assets/styles.css?v=3">
+<link rel="stylesheet" href="./assets/styles.css?v=4">
 <link rel="manifest" href="./manifest.json">
 </head>
 <body>
 <header class="app-header">
   <div class="header-row">
-    <img class="logo" src="./assets/logo.png?v=3" alt="Espaço Fitness DF" width="61" height="61">
+    <img class="logo" src="./assets/logo.png?v=4" alt="Espaço Fitness DF" width="61" height="61">
     <div class="brand"><h1>ESPAÇO FITNESS DF</h1><p>Área do Aluno</p></div>
     <button class="icon-btn" id="theme-toggle" type="button" aria-label="Alternar tema">☼</button>
   </div>
   <div class="hero">
     <span class="eyebrow">Plano de treinamento · v2</span>
     <h2>Treine com propósito.</h2>
-    <p>Hipertrofia de inferiores com recuperação dos dois joelhos.</p>
+    <p>Escolha academia ou casa e depois o treino do dia.</p>
   </div>
-  <nav class="week" id="week" aria-label="Semana de treino"></nav>
   <div class="summary" id="summary">
     <div class="summary-row">
       <span class="summary-label">PROGRESSO DO TREINO ABERTO</span>
@@ -68,7 +67,7 @@
     <section class="environment">
       <button class="environment-trigger" aria-expanded="false" aria-controls="gym-content" type="button">
         <span class="category-icon">A</span>
-        <span class="copy"><strong>Treino na Academia</strong><small>Ter · Full Body A · Qui · Full Body B · Sáb · Full Body C</small></span>
+        <span class="copy"><strong>Treino na Academia</strong><small>Full Body A · Full Body B · Full Body C</small></span>
         <span class="chevron">▶</span>
       </button>
       <div class="accordion-content" id="gym-content"><div class="accordion-inner"><div class="routine-list" id="gym-routines"></div></div></div>
@@ -76,7 +75,7 @@
     <section class="environment">
       <button class="environment-trigger" aria-expanded="false" aria-controls="home-content" type="button">
         <span class="category-icon">H</span>
-        <span class="copy"><strong>Treino em Casa</strong><small>Qua · Glúteo médio e estabilidade · Sex · Cardio e mobilidade</small></span>
+        <span class="copy"><strong>Treino em Casa</strong><small>Glúteo médio e estabilidade · Cardio e mobilidade</small></span>
         <span class="chevron">▶</span>
       </button>
       <div class="accordion-content" id="home-content"><div class="accordion-inner"><div class="routine-list" id="home-routines"></div></div></div>
@@ -90,7 +89,7 @@
     <details><summary>Volume semanal planejado</summary><ul id="note-volume"></ul></details>
     <details><summary>Cuidados com os dois joelhos</summary><ul id="note-care"></ul></details>
   </aside>
-  <footer class="app-footer">Espaço Fitness DF · v2.0</footer>
+  <footer class="app-footer">Espaço Fitness DF · v2.1</footer>
 </main>
 
 <footer class="timer-bar">
@@ -170,7 +169,7 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="./assets/data.js?v=3"></script>
-<script src="./assets/app.js?v=3"></script>
+<script src="./assets/data.js?v=4"></script>
+<script src="./assets/app.js?v=4"></script>
 </body>
 </html>

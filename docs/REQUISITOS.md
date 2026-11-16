@@ -4,8 +4,8 @@
 
 | ID | Descrição | Status |
 |---|---|---|
-| RF01 | Visualização de 5 sessões (Academia A/B/C e Casa Qua/Sex) em accordions por ambiente. | Implementado |
-| RF02 | Faixa semanal Seg→Dom com destaque do dia atual e atalho para a rotina do dia. | Implementado |
+| RF01 | Visualização de 5 sessões (Academia A/B/C e Casa Estabilidade/Condicionamento) em accordions por ambiente. | Implementado |
+| RF02 | Fluxo livre de escolha: ambiente (academia/casa) e depois o treino, sem grade fixa de dias. | Implementado |
 | RF03 | Controle individual de séries com alternância pendente/concluída. | Implementado |
 | RF04 | Progresso calculado por rotina, exibido no cartão, no header e na barra fixa. | Implementado |
 | RF05 | Persistência local de progresso, rotina aberta, descansos e preferências. | Implementado |

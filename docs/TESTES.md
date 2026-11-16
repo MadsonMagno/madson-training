@@ -1,4 +1,4 @@
-# Registro de Testes e Validação — Madson Training v2
+# Registro de Testes e Validação — Madson Training v2.1
 
 ## 1. Verificações automatizadas (executadas)
 
@@ -7,9 +7,9 @@
 | Sintaxe JS | `node --check assets/app.js` e `node --check assets/data.js` | Aprovado |
 | Integridade do JSON | Parse de `manifest.json` | Aprovado |
 | Ícones | `icon-192.png` (29 KB), `icon-512.png` (210 KB), `icon-maskable-512.png` (133 KB) | Aprovado |
-| Totais de séries | A 22 · B 22 · C 19 (21 com opcionais) · Qua 13 · Sex 7 | Aprovado |
-| Faixa semanal | Seg/Dom sem rotina; Ter A · Qua casa · Qui B · Sex casa · Sáb C | Aprovado |
-| Smoke test em DOM simulado | jsdom carregando `index.html` + `data.js` + `app.js`: 40 verificações (render, séries, auto-start, transição, pausa, presets, 100%, reset global e por rotina, opcional, persistência, dia atual) | 40/40 aprovadas |
+| Totais de séries | A 22 · B 22 · C 19 (21 com opcionais) · Casa estabilidade 13 · Casa condicionamento 7 | Aprovado |
+| Sem dias fixos | Nenhuma referência a `SCHEDULE`, faixa semanal ou badge "Hoje" no HTML, CSS e JS | Aprovado |
+| Smoke test em DOM simulado | jsdom carregando `index.html` + `data.js` + `app.js`: render, séries, auto-start, transição, pausa, presets, 100%, reset global e por rotina, opcional e persistência | Aprovado |
 
 ## 2. Roteiro de teste manual — desktop
 

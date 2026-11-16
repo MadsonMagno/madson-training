@@ -5,7 +5,6 @@
   "use strict";
 
   const WORKOUTS = window.WORKOUTS || [];
-  const SCHEDULE = window.SCHEDULE || [];
   const SAFETY = window.SAFETY || { volume: [], care: [], progression: [] };
   const DEFAULT_REST = window.DEFAULT_REST || 30;
 
@@ -115,36 +114,8 @@
     const global = Number(state.prefs.rest);
     return Number.isFinite(global) && global > 0 ? global : DEFAULT_REST;
   }
-  const TODAY_INDEX = () => (new Date().getDay() + 6) % 7; // segunda = 0
-
-  /* ------------------------ semana ------------------------ */
-  function renderWeek() {
-    const container = $("#week");
-    container.replaceChildren();
-    const today = TODAY_INDEX();
-    SCHEDULE.forEach((slot, index) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "week-day" + (slot.routine ? " has-routine" : "") + (index === today ? " today" : "");
-      const d = document.createElement("b");
-      d.textContent = slot.label;
-      const hint = document.createElement("small");
-      hint.textContent = slot.routine ? (slot.hint === "Casa" ? "casa" : "acad.") : "livre";
-      const dot = document.createElement("span");
-      dot.className = "dot";
-      btn.append(d, hint, dot);
-      btn.setAttribute("aria-label", `${slot.label}: ${slot.routine ? slot.hint : "descanso"}`);
-      btn.addEventListener("click", () => {
-        if (!slot.routine) { toast("Dia de descanso. Aproveite para recuperar."); return; }
-        openRoutine(slot.routine, true);
-      });
-      container.append(btn);
-    });
-  }
-
   /* ------------------------ render ------------------------ */
   function renderWorkouts() {
-    const today = TODAY_INDEX();
     WORKOUTS.forEach((workout) => {
       const routine = document.createElement("section");
       routine.className = "routine";
@@ -159,8 +130,7 @@
       trigger.innerHTML =
         '<span class="routine-symbol">' + workout.symbol + "</span>" +
         '<span class="copy"><strong>' + workout.title +
-        (SCHEDULE[today] && SCHEDULE[today].routine === workout.id ? '<span class="today-badge">Hoje</span>' : "") +
-        "</strong><small>" + workout.dayLabel + " · " + workout.subtitle + "</small></span>" +
+        "</strong><small>" + workout.subtitle + "</small></span>" +
         '<span class="chevron">▶</span>';
 
       const progress = document.createElement("div");
@@ -425,7 +395,7 @@
     $("#progress-fill").style.width = pct + "%";
     $("#completed").textContent = String(done);
     $("#total").textContent = String(total);
-    $("#progress-name").textContent = current.title + " · " + current.dayLabel;
+    $("#progress-name").textContent = current.title + " · " + current.subtitle;
     setSticky(current, total, done, pct);
   }
 
@@ -435,7 +405,7 @@
     $("#sticky-name").textContent = workout.title;
     $("#sticky-pct").textContent = pct + "%";
     $("#sticky-fill").style.width = pct + "%";
-    $("#sticky-day").textContent = workout.dayLabel + " · " + workout.subtitle;
+    $("#sticky-day").textContent = workout.subtitle;
     $("#sticky-count").textContent = done + "/" + total + " séries" + (pct === 100 ? " · concluído" : "");
     $("#sticky-count").classList.toggle("done", pct === 100);
     bar.classList.toggle("complete", pct === 100);
@@ -1120,7 +1090,6 @@
 
   /* ------------------------ início ------------------------ */
   function boot() {
-    renderWeek();
     renderWorkouts();
     renderNotes();
 

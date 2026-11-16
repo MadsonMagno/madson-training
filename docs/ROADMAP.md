@@ -4,7 +4,7 @@
 - Rotinas em accordions, controle de séries, progresso por rotina, cronômetro de 30s, temas, referências.
 
 ## v2 (atual) — concluída
-- Novo programa de 5 sessões (Full Body A/B/C + Casa Qua/Sex) com faixa semanal e destaque do dia.
+- Novo programa de 5 sessões (Full Body A/B/C + Casa estabilidade/condicionamento), com escolha livre de treino a cada dia.
 - Cronômetro reformulado: anel circular, presets, 30s padrão por exercício, auto-start, sinal de início, alarme agendado e "assumir áudio".
 - Barra de progresso fixa no topo.
 - Reinício condicional (global oculto + por rotina).

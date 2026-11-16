@@ -1,7 +1,7 @@
 /* Madson Training — Service Worker
    Estratégia: network-first para navegação (atualização imediata)
    e stale-while-revalidate para assets (offline rápido). */
-const VERSION = "treino-v2.0.0";
+const VERSION = "treino-v2.1.0";
 const PRECACHE = [
   "./",
   "./index.html",

@@ -97,33 +97,6 @@ button:focus-visible, input:focus-visible, a:focus-visible {
 .hero h2 { font-size: 25px; letter-spacing: -.7px; line-height: 1.2; margin: 7px 0; }
 .hero p { color: var(--muted); margin: 0; font-size: 12px; }
 
-/* ---------- Faixa da semana ---------- */
-.week {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-  margin-top: 16px;
-}
-.week-day {
-  display: grid;
-  gap: 3px;
-  justify-items: center;
-  padding: 7px 2px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  background: var(--panel);
-  color: var(--muted);
-  cursor: pointer;
-  min-height: 54px;
-}
-.week-day b { font-size: 10px; font-weight: 800; letter-spacing: .4px; }
-.week-day small { font-size: 8.5px; line-height: 1.15; text-align: center; }
-.week-day .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border); }
-.week-day.has-routine .dot { background: var(--gold); }
-.week-day.today { border-color: var(--gold); background: var(--gold-bg); color: var(--text); }
-.week-day.today b { color: var(--gold); }
-.week-day:active { transform: scale(.97); }
-
 /* ---------- Resumo ---------- */
 .summary {
   margin-top: 14px;
@@ -274,17 +247,6 @@ main { max-width: 620px; margin: auto; padding: 18px 14px; }
   border-radius: 9px;
   font-size: 13px;
   font-weight: 850;
-}
-.routine-trigger .copy strong { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.today-badge {
-  font-size: 8.5px;
-  letter-spacing: .8px;
-  font-weight: 850;
-  text-transform: uppercase;
-  color: #17130a;
-  background: var(--gold);
-  border-radius: 4px;
-  padding: 1px 5px;
 }
 .routine-progress { padding: 0 12px 11px; }
 .routine-progress-row {
@@ -680,7 +642,6 @@ dialog::backdrop { background: #000b; backdrop-filter: blur(3px); }
 @media (min-width: 480px) {
   main { padding-left: 20px; padding-right: 20px; }
   .exercise-list { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
-  .week-day small { font-size: 9.5px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
