@@ -4,236 +4,173 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#101010">
-<meta name="description" content="Madson — painel mobile de treinamento, séries e descanso.">
-<title>Madson | Training</title>
-<link rel="icon" type="image/png" href="./assets/logo.png?v=2">
-<link rel="apple-touch-icon" href="./assets/logo.png?v=2">
+<meta name="description" content="Painel mobile de treinamento: rotinas, séries, progresso e descanso.">
+<title>Treino | Área do Aluno</title>
+<link rel="icon" type="image/png" href="./assets/logo.png?v=3">
+<link rel="apple-touch-icon" href="./assets/icons/icon-192.png?v=3">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Madson Training">
+<meta name="apple-mobile-web-app-title" content="Treino">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<style>
-:root{--bg:#101010;--panel:#191919;--panel2:#222;--border:#363636;--text:#f5f5f5;--muted:#a4a4a4;--gold:#f4c430;--danger:#e45b5b;--shadow:0 5px 20px #0005;--safe:env(safe-area-inset-bottom,0px)}
-[data-theme="light"]{--bg:#f1f1f1;--panel:#fff;--panel2:#e9e9e9;--border:#d4d4d4;--text:#191919;--muted:#666;--gold:#a77c00;--danger:#c72e3b;--shadow:0 4px 16px #0000000b}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-bottom:135px}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI",Roboto,Arial,sans-serif;font-size:14px;line-height:1.5;padding-bottom:calc(125px + var(--safe));-webkit-tap-highlight-color:transparent}
-button,input{font:inherit}button{touch-action:manipulation}button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-.app-header{padding:calc(19px + env(safe-area-inset-top,0px)) 18px 20px;background:#080808;border-bottom:1px solid #3a321a}
-.header-row{display:flex;align-items:center;gap:12px}.logo{width:61px;height:61px;flex-shrink:0;object-fit:contain;border:0;border-radius:0;background:transparent;image-rendering:auto}
-.brand{flex:1;min-width:0}.brand h1{font-size:16px;letter-spacing:.3px;margin:0;font-weight:850;color:#f5f5f5}.brand p{margin:3px 0 0;color:var(--gold);font-size:10px;font-weight:750;letter-spacing:1.6px;text-transform:uppercase}
-.icon-btn{width:39px;height:39px;border:1px solid #383838;border-radius:10px;background:#1a1a1a;color:var(--gold);font-size:18px;cursor:pointer}
-.hero{margin-top:20px}.eyebrow{color:var(--gold);font-size:10px;letter-spacing:1.8px;font-weight:800;text-transform:uppercase}
-.hero h2{font-size:25px;letter-spacing:-.7px;line-height:1.2;margin:7px 0;color:#f5f5f5}.hero p{color:#aaa;margin:0;font-size:12px}
-.summary{margin-top:18px;padding:13px;background:#191919;border:1px solid #343434;border-radius:11px}
-.summary-row{display:flex;justify-content:space-between;align-items:center;gap:10px}.summary-label{font-size:11px;color:#bbb}.summary-number{font-size:17px;font-weight:850;color:var(--gold)}
-.progress-track{height:4px;background:#393939;border-radius:10px;margin-top:9px;overflow:hidden}.progress-fill{height:100%;width:0;background:var(--gold);transition:width .2s}
-main{max-width:620px;margin:auto;padding:21px 14px}
-.section-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 13px}.section-heading h2{font-size:18px;margin:0}.section-heading p{font-size:11px;color:var(--muted);margin:3px 0 0}
-.btn{border:1px solid var(--border);background:var(--panel2);color:var(--text);padding:8px 11px;border-radius:8px;font-size:11px;font-weight:750;cursor:pointer}.btn.gold{background:var(--gold);color:#17130a;border-color:var(--gold)}.btn.danger{color:var(--danger)}
-.environments{display:grid;gap:11px}.environment,.routine,.exercise{min-width:0;background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.environment-trigger,.routine-trigger{width:100%;display:flex;align-items:center;gap:12px;padding:14px;background:transparent;color:var(--text);border:0;text-align:left;cursor:pointer}
-.environment-trigger{min-height:76px}.category-icon{display:grid;place-items:center;width:42px;height:42px;flex-shrink:0;background:var(--panel2);border:1px solid var(--border);border-radius:10px;color:var(--gold);font-size:19px;font-weight:800}
-.copy{flex:1;min-width:0}.copy strong{display:block;font-size:13px;font-weight:800;line-height:1.4}.copy small{display:block;margin-top:4px;color:var(--muted);font-size:11px;line-height:1.4}
-.chevron{color:var(--gold);font-size:13px;transition:transform .2s}[aria-expanded="true"] .chevron{transform:rotate(90deg)}
-.accordion-content{display:grid;grid-template-rows:0fr;transition:grid-template-rows .22s}.accordion-content.open{grid-template-rows:1fr}.accordion-inner{min-height:0;overflow:hidden}
-.routine-list{padding:0 10px 10px;display:grid;gap:9px}.routine{border-radius:10px;box-shadow:none}.routine-trigger{padding:12px}
-.routine-symbol{display:grid;place-items:center;flex-shrink:0;width:35px;height:35px;border:1px solid #51431b;background:#2a2414;color:var(--gold);border-radius:9px;font-size:13px;font-weight:850}
-.routine-progress{padding:0 12px 11px}.routine-progress .progress-track{margin-top:7px;height:4px}.routine-progress-row{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:10px}.routine-progress-row strong{color:var(--gold);font-weight:800}
-.routine-content{border-top:1px solid transparent}.routine-content.open{border-color:var(--border)}.exercise-list{display:grid;gap:9px;padding:10px}
-.exercise{border-radius:10px;box-shadow:none}.exercise-top{display:flex;align-items:flex-start;gap:10px;padding:12px 12px 0}
-.exercise-index{display:grid;place-items:center;width:28px;height:28px;flex-shrink:0;border-radius:7px;background:var(--panel2);color:var(--gold);font-size:10px;font-weight:850}
-.exercise-heading{flex:1;min-width:0}.exercise-name{font-size:13px;font-weight:800;line-height:1.45;margin:0;overflow-wrap:anywhere}
-.prescription{display:inline-block;margin-top:6px;padding:3px 7px;border-radius:5px;background:#302814;color:var(--gold);font-size:10px;font-weight:800}[data-theme="light"] .prescription{background:#f7edc9;color:#775900}
-.description{margin:9px 12px 0;color:var(--muted);font-size:11px;line-height:1.65}.description.warning{color:var(--danger);font-weight:700}
-.reference-row{padding:10px 12px 0}.reference-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:7px;font-size:10px;font-weight:750;cursor:pointer}
-.tracker{padding:11px 12px 12px;margin-top:11px;border-top:1px solid var(--border)}.tracker-head{display:flex;justify-content:space-between;gap:8px;margin-bottom:9px}.tracker-label{font-size:9px;letter-spacing:1px;color:var(--muted);font-weight:850;text-transform:uppercase}.tracker-count{font-size:10px;color:var(--muted)}
-.set-list{display:flex;gap:7px;flex-wrap:wrap}.set-btn{flex:1;min-width:65px;min-height:39px;display:flex;justify-content:center;align-items:center;gap:6px;padding:7px 8px;border-radius:8px;border:1px solid var(--border);background:var(--panel2);color:var(--text);font-size:10px;font-weight:750;cursor:pointer}
-.set-mark{display:grid;place-items:center;width:15px;height:15px;border:1px solid #777;border-radius:4px;font-size:10px}.set-btn.checked{background:var(--gold);border-color:var(--gold);color:#17130a}.set-btn.checked .set-mark{border-color:#17130a}
-.exercise.all-done{border-color:var(--gold)}.exercise.all-done .exercise-index{background:var(--gold);color:#17130a}
-.note{margin-top:16px;padding:13px;border:1px solid var(--border);background:var(--panel);border-radius:10px;color:var(--muted);font-size:10px;line-height:1.7}.note strong{color:var(--text)}
-.timer-bar{position:fixed;z-index:20;bottom:0;left:0;right:0;padding:10px 14px calc(9px + var(--safe));background:var(--panel);border-top:1px solid var(--border);box-shadow:0 -5px 20px #0003}
-.timer-inner{max-width:620px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
-.timer-label{font-size:9px;letter-spacing:1px;color:var(--muted);font-weight:800;text-transform:uppercase}.timer-value{font-size:25px;font-weight:900;line-height:1.3;font-variant-numeric:tabular-nums}.timer-value.finished{color:var(--danger)}
-.timer-progress{height:3px;background:var(--border);border-radius:8px;overflow:hidden;margin-top:4px}.timer-progress-fill{height:100%;width:100%;background:var(--gold)}
-.timer-controls{display:flex;align-items:center;justify-content:flex-end;gap:6px}.timer-controls .btn{min-height:39px}
-.timer-edit{display:flex;align-items:center;gap:4px;margin-top:5px}.timer-edit label{font-size:10px;color:var(--muted)}.timer-edit input{width:52px;padding:4px;background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:6px;font-size:11px}
-.toast{position:fixed;z-index:50;left:50%;bottom:calc(132px + var(--safe));transform:translate(-50%,8px);opacity:0;pointer-events:none;background:#242424;color:#fff;border:1px solid #51431b;padding:10px 14px;border-radius:8px;font-size:11px;font-weight:700;width:max-content;max-width:calc(100% - 30px);transition:.2s}.toast.visible{opacity:1;transform:translate(-50%,0)}
-dialog{width:min(92vw,520px);max-height:82vh;overflow:auto;color:var(--text);background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:0;box-shadow:var(--shadow)}dialog::backdrop{background:#000b;backdrop-filter:blur(3px)}
-.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px;border-bottom:1px solid var(--border)}.dialog-head h3{margin:0;font-size:14px}.dialog-body{padding:14px}.dialog-body p{color:var(--muted);font-size:12px}
-.reference-options{display:grid;gap:9px}.reference-link{display:block;padding:12px;border:1px solid var(--border);border-radius:9px;text-decoration:none;color:var(--text);background:var(--panel2)}.reference-link strong{display:block;font-size:12px}.reference-link small{display:block;margin-top:4px;font-size:10px;color:var(--muted)}
-@media(min-width:480px){main{padding-left:20px;padding-right:20px}.exercise-list{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
-</style>
+<link rel="stylesheet" href="./assets/styles.css?v=3">
 <link rel="manifest" href="./manifest.json">
 </head>
 <body>
 <header class="app-header">
   <div class="header-row">
-    <img class="logo" src="./assets/logo.png?v=2" alt="Logo Espaço Fitness DF">
+    <img class="logo" src="./assets/logo.png?v=3" alt="Espaço Fitness DF" width="61" height="61">
     <div class="brand"><h1>ESPAÇO FITNESS DF</h1><p>Área do Aluno</p></div>
     <button class="icon-btn" id="theme-toggle" type="button" aria-label="Alternar tema">☼</button>
   </div>
-  <div class="hero"><span class="eyebrow">PLANO DE TREINAMENTO</span><h2>Treine com propósito.</h2><p>Rotinas, controle de séries e descanso em um só lugar.</p></div>
-  <div class="summary">
-    <div class="summary-row"><span class="summary-label">PROGRESSO DA ROTINA ABERTA</span><span class="summary-number" id="percentage">—</span></div>
+  <div class="hero">
+    <span class="eyebrow">Plano de treinamento · v2</span>
+    <h2>Treine com propósito.</h2>
+    <p>Hipertrofia de inferiores com recuperação dos dois joelhos.</p>
+  </div>
+  <nav class="week" id="week" aria-label="Semana de treino"></nav>
+  <div class="summary" id="summary">
+    <div class="summary-row">
+      <span class="summary-label">PROGRESSO DO TREINO ABERTO</span>
+      <span class="summary-number" id="percentage">—</span>
+    </div>
     <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-    <div class="summary-row" style="margin-top:8px"><span class="summary-label" id="progress-name">Abra um treino para acompanhar o progresso.</span><span class="summary-label"><b id="completed">0</b> / <b id="total">0</b></span></div>
+    <div class="summary-row" style="margin-top:8px">
+      <span class="summary-label" id="progress-name">Abra um treino para acompanhar o progresso.</span>
+      <span class="summary-label"><b id="completed">0</b> / <b id="total">0</b></span>
+    </div>
   </div>
 </header>
+
+<div class="sticky-progress" id="sticky-progress" aria-hidden="true">
+  <div class="sticky-inner">
+    <div class="sticky-main">
+      <span class="sticky-name" id="sticky-name">—</span>
+      <span class="sticky-pct" id="sticky-pct">0%</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="sticky-fill"></div></div>
+    <div class="sticky-meta">
+      <span id="sticky-day"></span>
+      <span id="sticky-count">0/0 séries</span>
+    </div>
+  </div>
+</div>
+
 <main>
-  <div class="section-heading"><div><h2>Rotinas de treino</h2><p>O progresso é calculado por rotina, não pelo plano inteiro.</p></div><button class="btn danger" id="reset-all" type="button">Reiniciar Progresso</button></div>
+  <div class="section-heading">
+    <div>
+      <h2>Rotinas de treino</h2>
+      <p id="routine-hint">O progresso é calculado por rotina, não pelo plano inteiro.</p>
+    </div>
+    <button class="btn danger" id="reset-all" type="button" hidden>Reiniciar Progresso</button>
+  </div>
+
   <div class="environments" id="environments">
     <section class="environment">
-      <button class="environment-trigger" aria-expanded="false" aria-controls="gym-content" type="button"><span class="category-icon">A</span><span class="copy"><strong>Treino na Academia</strong><small>Treino A · Treino B</small></span><span class="chevron">▶</span></button>
+      <button class="environment-trigger" aria-expanded="false" aria-controls="gym-content" type="button">
+        <span class="category-icon">A</span>
+        <span class="copy"><strong>Treino na Academia</strong><small>Ter · Full Body A · Qui · Full Body B · Sáb · Full Body C</small></span>
+        <span class="chevron">▶</span>
+      </button>
       <div class="accordion-content" id="gym-content"><div class="accordion-inner"><div class="routine-list" id="gym-routines"></div></div></div>
     </section>
     <section class="environment">
-      <button class="environment-trigger" aria-expanded="false" aria-controls="home-content" type="button"><span class="category-icon">H</span><span class="copy"><strong>Treino em Casa</strong><small>Core / Ativação / Elásticos</small></span><span class="chevron">▶</span></button>
+      <button class="environment-trigger" aria-expanded="false" aria-controls="home-content" type="button">
+        <span class="category-icon">H</span>
+        <span class="copy"><strong>Treino em Casa</strong><small>Qua · Glúteo médio e estabilidade · Sex · Cardio e mobilidade</small></span>
+        <span class="chevron">▶</span>
+      </button>
       <div class="accordion-content" id="home-content"><div class="accordion-inner"><div class="routine-list" id="home-routines"></div></div></div>
     </section>
   </div>
-  <aside class="note"><strong>Orientação de segurança</strong><br>Respeite as recomendações do profissional responsável pela reabilitação. Interrompa o exercício se houver dor crescente, inchaço ou perda de movimento. A liberação para trote não significa liberação automática para saltos ou esportes de impacto.</aside>
+
+  <aside class="note">
+    <strong>Orientação de segurança</strong><br>
+    Respeite as recomendações do profissional responsável pela reabilitação. Interrompa o exercício se houver dor crescente, inchaço ou perda de movimento. A liberação para trote não significa liberação automática para saltos ou esportes de impacto — a corda segue fora do programa.
+    <details><summary>Progressão de carga</summary><ul id="note-progression"></ul></details>
+    <details><summary>Volume semanal planejado</summary><ul id="note-volume"></ul></details>
+    <details><summary>Cuidados com os dois joelhos</summary><ul id="note-care"></ul></details>
+  </aside>
+  <footer class="app-footer">Espaço Fitness DF · v2.0</footer>
 </main>
-<footer class="timer-bar"><div class="timer-inner">
-  <div><div class="timer-label">DESCANSO ENTRE SÉRIES</div><div class="timer-value" id="timer-value" role="timer">00:30</div><div class="timer-progress"><div class="timer-progress-fill" id="timer-fill"></div></div>
-    <div class="timer-edit"><label for="timer-seconds">Segundos</label><input id="timer-seconds" type="number" min="1" max="3600" step="1" value="30" inputmode="numeric"><button class="btn" id="apply-time" type="button">Aplicar</button></div>
+
+<footer class="timer-bar">
+  <div class="timer-inner">
+    <div class="timer-row">
+      <div class="ring-wrap" id="ring-wrap">
+        <svg class="ring" viewBox="0 0 62 62" aria-hidden="true">
+          <circle class="ring-track" cx="31" cy="31" r="26"></circle>
+          <circle class="ring-fill" id="ring-fill" cx="31" cy="31" r="26" stroke-dasharray="163.4" stroke-dashoffset="0"></circle>
+        </svg>
+        <span class="ring-time" id="timer-value" role="timer" aria-live="off">00:30</span>
+      </div>
+      <div class="timer-info" id="timer-info">
+        <div class="timer-label"><span class="live-dot"></span><span id="timer-mode">DESCANSO</span></div>
+        <div class="timer-status" id="timer-status">Pronto para iniciar.</div>
+      </div>
+      <div class="timer-controls">
+        <button class="btn gold" id="timer-start" type="button">Iniciar</button>
+        <button class="btn" id="timer-reset" type="button" aria-label="Reiniciar cronômetro" title="Reiniciar cronômetro">↺</button>
+        <button class="btn" id="timer-settings-btn" type="button" aria-label="Ajustes do cronômetro" aria-expanded="false" title="Ajustes">⚙</button>
+      </div>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Duração do descanso">
+      <button class="chip" data-preset="30" type="button">30s</button>
+      <button class="chip" data-preset="60" type="button">1 min</button>
+      <button class="chip" data-preset="90" type="button">1m30</button>
+      <button class="chip" data-preset="120" type="button">2 min</button>
+      <button class="chip" data-preset="180" type="button">3 min</button>
+      <button class="chip" data-preset="free" type="button">Livre</button>
+    </div>
+    <div class="timer-settings" id="timer-settings" hidden>
+      <div class="field">
+        <label for="timer-seconds">Tempo personalizado (s)</label>
+        <input id="timer-seconds" type="number" min="5" max="3600" step="5" value="30" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label for="auto-rest">Iniciar descanso ao marcar série</label>
+        <span class="switch"><input id="auto-rest" type="checkbox" checked><span></span></span>
+      </div>
+      <div class="field">
+        <label for="duck-audio">Tentar assumir o áudio (pode pausar a música)</label>
+        <span class="switch"><input id="duck-audio" type="checkbox"><span></span></span>
+      </div>
+      <div class="field">
+        <label for="sound-on">Sinal sonoro de início e fim</label>
+        <span class="switch"><input id="sound-on" type="checkbox" checked><span></span></span>
+      </div>
+    </div>
   </div>
-  <div class="timer-controls"><button class="btn gold" id="timer-start" type="button">Iniciar</button><button class="btn" id="timer-reset" type="button" aria-label="Reiniciar cronômetro" title="Reiniciar cronômetro">↺</button></div>
-</div></footer>
-<dialog id="reference-dialog"><div class="dialog-head"><h3 id="reference-title">Referência do exercício</h3><button class="btn" id="reference-close" type="button">Fechar</button></div><div class="dialog-body"><p>Consulte uma referência apenas quando precisar. Os links abrem em outra aba.</p><div class="reference-options" id="reference-options"></div></div></dialog>
+</footer>
+
+<dialog id="reference-dialog">
+  <div class="dialog-head">
+    <h3 id="reference-title">Referência do exercício</h3>
+    <button class="btn" id="reference-close" type="button">Fechar</button>
+  </div>
+  <div class="dialog-body">
+    <p>Consulte uma referência apenas quando precisar. Os links abrem em outra aba.</p>
+    <div class="reference-options" id="reference-options"></div>
+  </div>
+</dialog>
+
+<div class="celebration" id="celebration" hidden>
+  <canvas id="fireworks"></canvas>
+  <div class="celebration-card">
+    <span class="eyebrow">100% concluído</span>
+    <h2>Treino concluído! 🔥</h2>
+    <p id="celebration-text">Mais um treino fechado. Agora é recuperar e comer bem.</p>
+    <div class="celebration-stats">
+      <div><b id="celebration-sets">0</b><small>Séries</small></div>
+      <div><b id="celebration-time">—</b><small>Duração</small></div>
+      <div><b id="celebration-load">—</b><small>Exercícios</small></div>
+    </div>
+    <button class="btn gold" id="celebration-close" type="button">Fechar</button>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>
-const WORKOUTS = [{"id": "gym-a", "group": "gym", "symbol": "A", "title": "Treino A", "subtitle": "Quadríceps / Peito / Costas", "items": [["Leg Press 45°", "3 × 8–12 reps", "Desça até uma amplitude confortável e controlada, sem tirar o quadril do encosto.", "leg press 45 graus execução correta", 3], ["Hip Thrust", "3 × 8–12 reps", "Contraia os glúteos no topo do movimento, sem hiperestender a lombar.", "hip thrust execução correta", 3], ["Mesa Flexora", "3 × 10–15 reps", "Execute em ritmo controlado, mantendo os quadris estáveis.", "mesa flexora execução correta", 3], ["Panturrilha em Pé", "2 × 12–20 reps", "Alongue e contraia a panturrilha em toda a amplitude, sem impulsos.", "panturrilha em pé execução", 2], ["Supino Máquina", "3 × 8–12 reps", "Empurre com controle, mantendo as costas apoiadas e os ombros estáveis.", "supino máquina execução correta", 3], ["Barra Fixa Pronada no Graviton", "3 × 6–12 reps", "Use pegada na largura dos ombros e evite elevar excessivamente os ombros.", "barra fixa pronada graviton execução", 3], ["Elevação Lateral", "2 × 12–20 reps", "Execute sem balanço, elevando os braços de forma controlada para trabalhar a região lateral dos ombros.", "elevação lateral com halteres execução", 2]]}, {"id": "gym-b", "group": "gym", "symbol": "B", "title": "Treino B", "subtitle": "Glúteos / Posteriores / Costas / Lombar", "items": [["Stiff / RDL", "3 × 8–12 reps", "Leve o quadril para trás e mantenha a coluna em posição neutra.", "stiff levantamento terra romeno RDL execução", 3], ["Leg Press Unilateral OU Step-Up Baixo", "2–3 × 8–12 reps/side", "Escolha uma opção e trabalhe os dois lados com controle.", "leg press unilateral step up baixo execução", 3], ["Flexora Unilateral", "2 × 10–15 reps/side", "Controle o movimento e mantenha os quadris estáveis.", "mesa flexora unilateral execução", 2], ["Cadeira/Mesa Abdutora", "2 × 12–20 reps", "Movimento controlado, sem impulso.", "cadeira abdutora execução correta", 2], ["Panturrilha Sentada", "2 × 12–20 reps", "Amplitude completa e contração controlada.", "panturrilha sentada execução", 2], ["Remada Baixa", "3 × 8–12 reps", "Puxe com controle, mantendo o tronco estável.", "remada baixa cabo execução", 3], ["Paralela Assistida no Graviton", "2 × 8–12 reps", "Use assistência suficiente para manter a técnica.", "paralela assistida graviton execução", 2], ["Extensão Lombar no Banco Romano", "2 séries controladas", "Flexione pelo quadril, sem hiperestender a lombar. Interrompa se a dor irradiar para a perna.", "extensão lombar banco romano execução correta", 2]]}, {"id": "home-1", "group": "home", "symbol": "01", "title": "Rotina 1: Resistência e Tronco", "subtitle": "Estabilidade / Core / Mobilidade", "items": [["Caminhada Leve", "5–10 min", "Caminhe em ritmo confortável.", "caminhada leve esteira postura", 1], ["Pallof Press com Elástico", "2 × 10–12/side", "Resista à rotação do tronco e mantenha o abdômen firme.", "Pallof press elástico execução", 2], ["Bird Dog", "2 × 8–10/side", "Estenda braço e perna opostos sem girar a pelve.", "bird dog exercício execução", 2], ["Prancha Lateral", "2 × 20–40s/side", "Mantenha o corpo alinhado e respire normalmente.", "prancha lateral exercício execução", 2], ["Caminhada Lateral com Miniband", "2 × 10–15 steps/side", "Passos curtos e controlados, mantendo tensão no elástico.", "caminhada lateral miniband glúteos", 2]]}, {"id": "home-2", "group": "home", "symbol": "02", "title": "Rotina 2: Joelho e Elásticos", "subtitle": "Glúteos / Ativação / Condicionamento", "items": [["Ponte de Glúteos com Elástico", "3 × 12–15 reps", "Eleve o quadril sem hiperestender a lombar.", "ponte glúteos elástico execução", 3], ["Flexão de Joelho com Elástico", "2 × 12–15 reps", "Flexione e retorne lentamente, sem impulso.", "flexão de joelho elástico fisioterapia", 2], ["Abdução de Quadril com Elástico", "2 × 15/side", "Controle o movimento e trabalhe ambos os lados.", "abdução quadril elástico exercício", 2], ["TKE (Extensão Terminal do Joelho) com Elástico", "2 × 15–20/leg", "Estenda o joelho de forma suave, conforme sua reabilitação.", "TKE extensão terminal joelho elástico fisioterapia", 2], ["Esteira / Trote Liberado", "10–20 min", "Não pule corda nem faça pliometria de alto impacto sem liberação explícita.", "técnica caminhada corrida esteira fisioterapia", 1]]}];
-const $ = (s,root=document)=>root.querySelector(s);
-const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
-const PROGRESS_KEY="madson.training.progress.v3", THEME_KEY="madson.training.theme.v1";
-let progress={}, activeRoutine=null, toastTimer=null;
-let duration=30, remaining=30, timerId=null, deadline=0, running=false;
 
-function read(key){try{return localStorage.getItem(key)}catch{return null}}
-function write(key,value){try{localStorage.setItem(key,value);return true}catch{toast("Não foi possível salvar neste navegador.");return false}}
-function toast(message){clearTimeout(toastTimer);const el=$("#toast");el.textContent=message;el.classList.add("visible");toastTimer=setTimeout(()=>el.classList.remove("visible"),2200)}
-function setTheme(theme){document.documentElement.dataset.theme=theme;$("#theme-toggle").textContent=theme==="dark"?"☼":"☾";$('meta[name="theme-color"]').content=theme==="dark"?"#101010":"#f1f1f1"}
-setTheme(read(THEME_KEY)==="light"?"light":"dark");
-$("#theme-toggle").addEventListener("click",()=>{const t=document.documentElement.dataset.theme==="dark"?"light":"dark";setTheme(t);write(THEME_KEY,t)});
-
-function renderWorkouts(){
-  for(const w of WORKOUTS){
-    const routine=document.createElement("section");routine.className="routine";routine.dataset.routine=w.id;
-    const trigger=document.createElement("button");trigger.className="routine-trigger";trigger.type="button";trigger.setAttribute("aria-expanded","false");trigger.setAttribute("aria-controls",w.id+"-content");
-    trigger.innerHTML=`<span class="routine-symbol">${w.symbol}</span><span class="copy"><strong>${w.title}</strong><small>${w.subtitle}</small></span><span class="chevron">▶</span>`;
-    const prog=document.createElement("div");prog.className="routine-progress";
-    prog.innerHTML=`<div class="routine-progress-row"><span data-routine-label="${w.id}">Progresso da rotina</span><strong data-routine-pct="${w.id}">0%</strong></div><div class="progress-track"><div class="progress-fill" data-routine-fill="${w.id}"></div></div>`;
-    const content=document.createElement("div");content.className="accordion-content routine-content";content.id=w.id+"-content";
-    const inner=document.createElement("div");inner.className="accordion-inner";const list=document.createElement("div");list.className="exercise-list";
-    w.items.forEach((item,i)=>{
-      const [name,prescription,description,query,prescribedSets]=item;
-      const ex=document.createElement("article");ex.className="exercise";ex.dataset.id=w.id+"-"+(i+1);ex.dataset.sets=prescribedSets;ex.dataset.name=name;ex.dataset.query=query;
-      const top=document.createElement("div");top.className="exercise-top";
-      const index=document.createElement("span");index.className="exercise-index";index.textContent=String(i+1).padStart(2,"0");
-      const heading=document.createElement("div");heading.className="exercise-heading";
-      const h3=document.createElement("h3");h3.className="exercise-name";h3.textContent=name;
-      const rx=document.createElement("span");rx.className="prescription";rx.textContent=prescription;heading.append(h3,rx);top.append(index,heading);
-      const desc=document.createElement("p");desc.className="description"+(/warning|impact|hyperextend|radiates/i.test(description)?" warning":"");desc.textContent=description;
-      const refrow=document.createElement("div");refrow.className="reference-row";const ref=document.createElement("button");ref.className="reference-btn";ref.type="button";ref.textContent="Ver referência";ref.addEventListener("click",()=>openReference(ex));refrow.append(ref);
-      const tracker=document.createElement("div");tracker.className="tracker";const th=document.createElement("div");th.className="tracker-head";
-      const label=document.createElement("span");label.className="tracker-label";label.textContent="Controle de séries";
-      const count=document.createElement("span");count.className="tracker-count";count.dataset.count=ex.dataset.id;th.append(label,count);
-      const sets=document.createElement("div");sets.className="set-list";
-      const numberOfSets=Number(setsTotalValue(prescribedSets));
-      for(let n=0;n<numberOfSets;n++){
-        const b=document.createElement("button");b.className="set-btn";b.type="button";b.dataset.set=n;
-        const mark=document.createElement("span");mark.className="set-mark";mark.setAttribute("aria-hidden","true");
-        const text=document.createElement("span");text.textContent="Série "+(n+1);b.append(mark,text);
-        b.addEventListener("click",()=>toggleSet(ex,n));sets.append(b);
-      }
-      tracker.append(th,sets);ex.append(top,desc,refrow,tracker);list.append(ex);
-    });
-    inner.append(list);content.append(inner);routine.append(trigger,prog,content);
-    trigger.addEventListener("click",()=>{const open=trigger.getAttribute("aria-expanded")!=="true";trigger.setAttribute("aria-expanded",String(open));content.classList.toggle("open",open);activeRoutine=open?w.id:(activeRoutine===w.id?null:activeRoutine);updateProgress() });
-    $("#"+w.group+"-routines").append(routine);
-  }
-  $$(".environment-trigger").forEach(button=>button.addEventListener("click",()=>{const content=document.getElementById(button.getAttribute("aria-controls"));const open=button.getAttribute("aria-expanded")!=="true";button.setAttribute("aria-expanded",String(open));content.classList.toggle("open",open)}));
-}
-function setsTotalValue(n){return Math.max(1,Number(n)||1)}
-function setsCount(){return 0}
-function setsTotal(){return 0}
-function loadProgress(){try{const p=JSON.parse(read(PROGRESS_KEY)||"{}");progress=p&&typeof p==="object"&&!Array.isArray(p)?p:{}}catch{progress={}}}
-function saveProgress(){write(PROGRESS_KEY,JSON.stringify(progress))}
-function toggleSet(ex,index){const id=ex.dataset.id;const values=[...(progress[id]||[])];progress[id]=values.includes(index)?values.filter(x=>x!==index):[...values,index].sort((a,b)=>a-b);saveProgress();updateExercise(ex);updateProgress();toast(progress[id].length===Number(ex.dataset.sets)?"Exercício concluído.":"Série registrada.")}
-function updateExercise(ex){const id=ex.dataset.id,n=Number(ex.dataset.sets),values=progress[id]||[];ex.classList.toggle("all-done",values.length===n);const c=$(`[data-count="${id}"]`,ex);if(c)c.textContent=values.length===n?"Concluído":`${values.length}/${n} concluídas`;$$(".set-btn",ex).forEach(b=>{const yes=values.includes(Number(b.dataset.set));b.classList.toggle("checked",yes);b.setAttribute("aria-pressed",String(yes));b.setAttribute("aria-label",`Série ${Number(b.dataset.set)+1}: ${yes?"concluída":"pendente"}`);$(".set-mark",b).textContent=yes?"✓":""})}
-function updateProgress(){
-  WORKOUTS.forEach(w=>{
-    const exercises=$$(`[data-routine="${w.id}"] .exercise`);let total=0,done=0;
-    exercises.forEach(ex=>{total+=Number(ex.dataset.sets)||1;done+=(progress[ex.dataset.id]||[]).length});
-    const pct=total?Math.round(done/total*100):0;
-    const pctEl=$(`[data-routine-pct="${w.id}"]`),fill=$(`[data-routine-fill="${w.id}"]`),label=$(`[data-routine-label="${w.id}"]`);
-    if(pctEl)pctEl.textContent=pct+"%";if(fill)fill.style.width=pct+"%";if(label)label.textContent=`${done} de ${total} séries`;
-  });
-  const current=WORKOUTS.find(w=>w.id===activeRoutine);
-  if(!current){$("#percentage").textContent="—";$("#progress-fill").style.width="0%";$("#completed").textContent="0";$("#total").textContent="0";$("#progress-name").textContent="Abra um treino para acompanhar o progresso.";return}
-  const exercises=$$(`[data-routine="${current.id}"] .exercise`);let total=0,done=0;
-  exercises.forEach(ex=>{total+=Number(ex.dataset.sets)||1;done+=(progress[ex.dataset.id]||[]).length});
-  const pct=total?Math.round(done/total*100):0;
-  $("#percentage").textContent=pct+"%";$("#progress-fill").style.width=pct+"%";$("#completed").textContent=done;$("#total").textContent=total;$("#progress-name").textContent=current.title;
-}
-function openReference(ex){
-  $("#reference-title").textContent=ex.dataset.name;const box=$("#reference-options");box.replaceChildren();
-  const q=ex.dataset.query||ex.dataset.name;
-  const items=[
-    ["Pesquisar vídeos","Demonstrações e técnica","https://www.youtube.com/results?search_query="+encodeURIComponent(q)],
-    ["Pesquisar imagens","Posicionamento e referência visual","https://www.google.com/search?tbm=isch&q="+encodeURIComponent(q)],
-    ["Pesquisar GIFs","Demonstração visual do movimento","https://www.google.com/search?tbm=isch&q="+encodeURIComponent(q+" gif")]
-  ];
-  items.forEach(([title,sub,url])=>{const a=document.createElement("a");a.className="reference-link";a.href=url;a.target="_blank";a.rel="noopener noreferrer";const b=document.createElement("strong");b.textContent=title;const s=document.createElement("small");s.textContent=sub;a.append(b,s);box.append(a)});
-  $("#reference-dialog").showModal();
-}
-$("#reference-close").addEventListener("click",()=>$("#reference-dialog").close());
-$("#reference-dialog").addEventListener("click",e=>{if(e.target===$("#reference-dialog"))$("#reference-dialog").close()});
-$("#reset-all").addEventListener("click",()=>{if(!confirm("Apagar todas as séries registradas e fechar todas as rotinas?"))return;progress={};saveProgress();$$(".exercise").forEach(updateExercise);$$(".environment-trigger,.routine-trigger").forEach(b=>b.setAttribute("aria-expanded","false"));$$(".accordion-content").forEach(c=>c.classList.remove("open"));activeRoutine=null;updateProgress();resetTimer();window.scrollTo({top:0,behavior:"smooth"});toast("Progresso reiniciado.")});
-
-function fmt(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
-function updateTimer(){$("#timer-value").textContent=fmt(remaining);$("#timer-value").classList.toggle("finished",remaining===0);$("#timer-fill").style.width=(duration?remaining/duration*100:0)+"%";$("#timer-start").textContent=running?"Pausar":remaining===0?"Reiniciar":"Iniciar"}
-function stopTimer(){if(timerId!==null)clearInterval(timerId);timerId=null;running=false}
-function playTimerSound(){
-  try {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) return;
-    const ctx = new AudioContextClass();
-    const now = ctx.currentTime;
-    [0, 0.22, 0.44].forEach((offset, index) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = "sine";
-      osc.frequency.value = index === 1 ? 1046 : 880;
-      gain.gain.setValueAtTime(0.0001, now + offset);
-      gain.gain.exponentialRampToValueAtTime(0.16, now + offset + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.16);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(now + offset);
-      osc.stop(now + offset + 0.18);
-    });
-    setTimeout(() => ctx.close().catch(() => {}), 1000);
-  } catch (_) {
-    // Alguns navegadores podem bloquear áudio dependendo das permissões.
-  }
-}
-function finishTimer(){
-  stopTimer();
-  remaining=0;
-  updateTimer();
-  playTimerSound();
-  if("vibrate" in navigator){try{navigator.vibrate([200,100,200])}catch{}}
-  toast("Descanso concluído. Hora da próxima série!");
-}
-function tick(){remaining=Math.max(0,Math.ceil((deadline-Date.now())/1000));updateTimer();if(remaining<=0)finishTimer()}
-function startTimer(){if(running){stopTimer();updateTimer();return}if(remaining<=0)remaining=duration;running=true;deadline=Date.now()+remaining*1000;timerId=setInterval(tick,200);updateTimer()}
-function resetTimer(){stopTimer();remaining=duration;updateTimer()}
-$("#timer-start").addEventListener("click",startTimer);$("#timer-reset").addEventListener("click",resetTimer);
-$("#apply-time").addEventListener("click",()=>{const input=$("#timer-seconds"),n=Number(input.value);if(!Number.isInteger(n)||n<1||n>3600){toast("Informe entre 1 e 3600 segundos.");input.focus();return}duration=n;resetTimer();toast("Descanso atualizado para "+n+" segundos.")});
-$("#timer-seconds").addEventListener("keydown",e=>{if(e.key==="Enter")$("#apply-time").click()});
-renderWorkouts();loadProgress();$$(".exercise").forEach(updateExercise);updateProgress();updateTimer();
-</script>
+<script src="./assets/data.js?v=3"></script>
+<script src="./assets/app.js?v=3"></script>
 </body>
 </html>
